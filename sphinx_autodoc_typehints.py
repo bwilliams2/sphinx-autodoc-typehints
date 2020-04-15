@@ -41,7 +41,7 @@ def get_annotation_class_name(annotation, module: str) -> str:
         return annotation.__qualname__
     elif getattr(annotation, '_name', None):  # Required for generic aliases on Python 3.7+
         return annotation._name
-    elif getattr(annotation, 'name', None) and module in ('typing', 'typing_extensions'):
+    elif getattr(annotation, 'name', None) and module in ('typing', 'typing_extensions') and isinstance(getattr(annotation, "name"), str):
         # Required for at least Pattern and Match
         return annotation.name
 
